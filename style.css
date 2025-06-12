@@ -1,0 +1,47 @@
+body {
+    background: #323232;
+    font-family: 'Open Sans', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    color: #fff;
+}
+#content {
+    margin-top: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+table {
+    border-collapse: collapse;
+    background: transparent;
+}
+
+td {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    /* Entfernt alle Ränder zunächst */
+}
+
+/* Nur innere Linien anzeigen */
+tr:not(:last-child) td {
+    border-bottom: 5px solid #fff;
+}
+td:not(:last-child) {
+    border-right: 5px solid #fff;
+}
+
