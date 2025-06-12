@@ -19,7 +19,8 @@ function render() {
       if (fields[index] === "circle") symbol = getAnimatedCircleSVG();
       if (fields[index] === "cross") symbol = getAnimatedCrossSVG();
       // onclick nur, wenn Feld leer ist
-      let onclick = fields[index] === null ? `onclick="handleClick(${index}, this)"` : "";
+      let onclick =
+        fields[index] === null ? `onclick="handleClick(${index}, this)"` : "";
       table += `<td ${onclick}>${symbol}</td>`;
     }
     table += "</tr>";
@@ -73,17 +74,18 @@ function handleClick(index, tdElement) {
 // Prüft, ob das Spiel vorbei ist und gibt ggf. die Gewinn-Kombination zurück
 function checkGameOver() {
   const winPatterns = [
-    [0,1,2], [3,4,5], [6,7,8], // Reihen
-    [0,3,6], [1,4,7], [2,5,8], // Spalten
-    [0,4,8], [2,4,6]           // Diagonalen
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8], // Reihen
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8], // Spalten
+    [0, 4, 8],
+    [2, 4, 6], // Diagonalen
   ];
   for (const pattern of winPatterns) {
     const [a, b, c] = pattern;
-    if (
-      fields[a] &&
-      fields[a] === fields[b] &&
-      fields[a] === fields[c]
-    ) {
+    if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
       return { indices: pattern, winner: fields[a] };
     }
   }
@@ -94,15 +96,15 @@ function checkGameOver() {
 function drawWinLine(winInfo) {
   // Zellmitten berechnen (jede Zelle 80x80, Mitte +40)
   const cellCenters = [
-    { x: 40, y: 40 },   // Zelle 0
-    { x: 120, y: 40 },  // Zelle 1
-    { x: 200, y: 40 },  // Zelle 2
-    { x: 40, y: 120 },  // Zelle 3
+    { x: 40, y: 40 }, // Zelle 0
+    { x: 120, y: 40 }, // Zelle 1
+    { x: 200, y: 40 }, // Zelle 2
+    { x: 40, y: 120 }, // Zelle 3
     { x: 120, y: 120 }, // Zelle 4
     { x: 200, y: 120 }, // Zelle 5
-    { x: 40, y: 200 },  // Zelle 6
+    { x: 40, y: 200 }, // Zelle 6
     { x: 120, y: 200 }, // Zelle 7
-    { x: 200, y: 200 }  // Zelle 8
+    { x: 200, y: 200 }, // Zelle 8
   ];
 
   // Finde die Felder der Gewinnkombination
@@ -134,21 +136,21 @@ function drawWinLine(winInfo) {
       <line x1="${start.x}" y1="${start.y}" x2="${end.x}" y2="${end.y}" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
     </svg>
   `;
-  const wrapper = document.querySelector('.table-wrapper');
-  const oldLine = wrapper.querySelector('.win-line');
+  const wrapper = document.querySelector(".table-wrapper");
+  const oldLine = wrapper.querySelector(".win-line");
   if (oldLine) oldLine.remove();
-  wrapper.insertAdjacentHTML('beforeend', svgLine);
+  wrapper.insertAdjacentHTML("beforeend", svgLine);
 }
 
 function drawWinAnimation(winInfo) {
   // Füge der Gewinnkombination eine Klasse hinzu und starte die Animation
   const indices = winInfo.indices;
   // Hole alle TDs der Tabelle
-  const wrapper = document.querySelector('.table-wrapper');
-  const tds = wrapper.querySelectorAll('td');
-  indices.forEach(idx => {
+  const wrapper = document.querySelector(".table-wrapper");
+  const tds = wrapper.querySelectorAll("td");
+  indices.forEach((idx) => {
     const td = tds[idx];
-    td.classList.add('win-cell');
+    td.classList.add("win-cell");
   });
 }
 
@@ -178,7 +180,7 @@ function getAnimatedCircleSVG() {
 }
 
 function getAnimatedCrossSVG() {
-    return `
+  return `
 <svg width="60" height="60" viewBox="0 0 60 60">
   <line
     x1="15" y1="15"

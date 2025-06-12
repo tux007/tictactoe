@@ -1,197 +1,208 @@
 body {
-    background: #323232;
-    font-family: 'Open Sans', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: white;
+  background: #323232;
+  font-family: "Open Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
 }
 
 h1 {
-    text-align: center;
-    font-size: 3.5rem;
-    margin-top: 20px;
-    color: #fff;
+  text-align: center;
+  font-size: 3.5rem;
+  margin-top: 20px;
+  color: #fff;
 }
 #content {
-    margin-top: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 /* Wrapper für Tabelle und SVG-Linie */
 .table-wrapper {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 /* Gewinnlinie-Overlay */
 .win-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
 }
 
 table {
-    border-collapse: collapse;
-    background: transparent;
+  border-collapse: collapse;
+  background: transparent;
 }
 
 td {
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    /* Entfernt alle Ränder zunächst */
-    padding: 0;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  /* Entfernt alle Ränder zunächst */
+  padding: 0;
 }
 
 td > svg {
-    display: block;
-    margin: 0 auto;
-    /* Abstand zu den Zellrändern, damit SVG nie die Linien berührt */
-    margin-top: 5px;
-    margin-bottom: 5px;
+  display: block;
+  margin: 0 auto;
+  /* Abstand zu den Zellrändern, damit SVG nie die Linien berührt */
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 td:hover {
-    background: rgba(255, 255, 255, 0.3)
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Nur innere Linien anzeigen */
 tr:not(:last-child) td {
-    border-bottom: 5px solid #fff;
+  border-bottom: 5px solid #fff;
 }
 td:not(:last-child) {
-    border-right: 5px solid #fff;
+  border-right: 5px solid #fff;
 }
 
 @keyframes win-grow {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.18);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .win-cell {
-    animation: win-grow 0.7s infinite;
-    filter: drop-shadow(0 0 8px #ff2222);
-    /* Verhindert, dass das Wachstum die Linien berührt */
-    z-index: 1;
+  animation: win-grow 0.7s infinite;
+  filter: drop-shadow(0 0 8px #ff2222);
+  /* Verhindert, dass das Wachstum die Linien berührt */
+  z-index: 1;
 }
 
 .win-cell > svg {
-    /* Auch beim Wachsen Abstand zu den Zellrändern */
-    margin-top: 5px;
-    margin-bottom: 5px;
+  /* Auch beim Wachsen Abstand zu den Zellrändern */
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .win-cell svg circle,
 .win-cell svg line {
-    stroke: #ff2222 !important;
-    /* Optional: für SVG-Glow */
-    filter: drop-shadow(0 0 6px #ff2222);
+  stroke: #ff2222 !important;
+  /* Optional: für SVG-Glow */
+  filter: drop-shadow(0 0 6px #ff2222);
 }
 
 .button-wrapper {
-    display: flex;
-    justify-content: center;
-    margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
 }
 
 #restart-btn {
-    background: linear-gradient(90deg, #00B0EF 0%, #FFC000 100%);
-    color: #222;
-    font-size: 1.3rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 30px;
-    padding: 16px 40px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
-    outline: none;
-    letter-spacing: 1px;
+  background: linear-gradient(90deg, #00b0ef 0%, #ffc000 100%);
+  color: #222;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
+  outline: none;
+  letter-spacing: 1px;
 }
 
-#restart-btn:hover, #restart-btn:focus {
-    transform: scale(1.06);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    background: linear-gradient(90deg, #FFC000 0%, #00B0EF 100%);
+#restart-btn:hover,
+#restart-btn:focus {
+  transform: scale(1.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(90deg, #ffc000 0%, #00b0ef 100%);
 }
 
 #turn-indicator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 32px;
-    margin-top: 30px;
-    margin-bottom: -40px;
-    font-size: 2.2rem;
-    min-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 2.2rem;
+  min-height: 70px;
 }
 
 .turn-symbol {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: none;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    box-shadow: none;
-    opacity: 0.6;
-    filter: grayscale(0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: none;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: none;
+  opacity: 0.6;
+  filter: grayscale(0.5);
 }
 
 @keyframes turn-blink {
-    0% { opacity: 1; filter: none; transform: scale(1.12);}
-    40% { opacity: 0.4; filter: drop-shadow(0 0 10px #fff); transform: scale(1.28);}
-    100% { opacity: 1; filter: none; transform: scale(1.12);}
-}
-
-.turn-symbol.active {
-    background: none;
-    box-shadow: none;
+  0% {
     opacity: 1;
     filter: none;
     transform: scale(1.12);
-    z-index: 2;
-    animation: turn-blink 0.8s infinite;
+  }
+  40% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 10px #fff);
+    transform: scale(1.28);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: scale(1.12);
+  }
+}
+
+.turn-symbol.active {
+  background: none;
+  box-shadow: none;
+  opacity: 1;
+  filter: none;
+  transform: scale(1.12);
+  z-index: 2;
+  animation: turn-blink 0.8s infinite;
 }
 
 .turn-symbol.cross.active {
-    /* Kein gelber Schatten mehr, nur Blinken */
-    box-shadow: none;
+  /* Kein gelber Schatten mehr, nur Blinken */
+  box-shadow: none;
 }
 
 .turn-symbol svg {
-    width: 48px;
-    height: 48px;
+  width: 48px;
+  height: 48px;
 }
 
 #turn-label {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 0;
-    font-size: 1.4rem;
-    color: #fff;
-    letter-spacing: 0.5px;
-    font-weight: 600;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
-
