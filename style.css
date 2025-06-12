@@ -34,7 +34,12 @@ td {
     font-weight: bold;
     color: #fff;
     border: none;
+    cursor: pointer;
     /* Entfernt alle Ränder zunächst */
+}
+
+td:hover {
+    background: rgba(255, 255, 255, 0.3)
 }
 
 /* Nur innere Linien anzeigen */

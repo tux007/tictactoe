@@ -1,4 +1,5 @@
-let fields = [null, "circle", null, null, null, null, "cross", null, null];
+let fields = [null, null, null, null, null, null, null, null, null];
+let currentShape = "circle";
 
 function init() {
   render();
@@ -13,12 +14,29 @@ function render() {
       let symbol = "";
       if (fields[index] === "circle") symbol = getAnimatedCircleSVG();
       if (fields[index] === "cross") symbol = getAnimatedCrossSVG();
-      table += `<td>${symbol}</td>`;
+      // onclick nur, wenn Feld leer ist
+      let onclick = fields[index] === null ? `onclick="handleClick(${index}, this)"` : "";
+      table += `<td ${onclick}>${symbol}</td>`;
     }
     table += "</tr>";
   }
   table += "</table>";
   document.getElementById("content").innerHTML = table;
+}
+
+function handleClick(index, tdElement) {
+  // Setze das Feld auf das aktuelle Symbol
+  fields[index] = currentShape;
+  // Füge das SVG direkt ins Feld ein
+  if (currentShape === "circle") {
+    tdElement.innerHTML = getAnimatedCircleSVG();
+  } else {
+    tdElement.innerHTML = getAnimatedCrossSVG();
+  }
+  // Entferne das onclick-Attribut
+  tdElement.onclick = null;
+  // Wechsel das Symbol für den nächsten Zug
+  currentShape = currentShape === "circle" ? "cross" : "circle";
 }
 
 function getAnimatedCircleSVG() {
