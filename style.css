@@ -17,7 +17,23 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     
+}
+
+/* Wrapper für Tabelle und SVG-Linie */
+.table-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Gewinnlinie-Overlay */
+.win-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 2;
 }
 
 table {
@@ -36,6 +52,15 @@ td {
     border: none;
     cursor: pointer;
     /* Entfernt alle Ränder zunächst */
+    padding: 0;
+}
+
+td > svg {
+    display: block;
+    margin: 0 auto;
+    /* Abstand zu den Zellrändern, damit SVG nie die Linien berührt */
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 td:hover {
@@ -48,5 +73,64 @@ tr:not(:last-child) td {
 }
 td:not(:last-child) {
     border-right: 5px solid #fff;
+}
+
+@keyframes win-grow {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.win-cell {
+    animation: win-grow 0.7s infinite;
+    filter: drop-shadow(0 0 8px #ff2222);
+    /* Verhindert, dass das Wachstum die Linien berührt */
+    z-index: 1;
+}
+
+.win-cell > svg {
+    /* Auch beim Wachsen Abstand zu den Zellrändern */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.win-cell svg circle,
+.win-cell svg line {
+    stroke: #ff2222 !important;
+    /* Optional: für SVG-Glow */
+    filter: drop-shadow(0 0 6px #ff2222);
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+#restart-btn {
+    background: linear-gradient(90deg, #00B0EF 0%, #FFC000 100%);
+    color: #222;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    padding: 16px 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.3s;
+    outline: none;
+    letter-spacing: 1px;
+}
+
+#restart-btn:hover, #restart-btn:focus {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    background: linear-gradient(90deg, #FFC000 0%, #00B0EF 100%);
 }
 
