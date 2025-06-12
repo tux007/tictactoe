@@ -6,6 +6,9 @@ function init() {
 }
 
 function render() {
+  // Turn indicator oben anzeigen
+  renderTurnIndicator();
+
   // Tabelle in einen Wrapper legen
   let table = '<div class="table-wrapper"><table>';
   for (let row = 0; row < 3; row++) {
@@ -23,6 +26,25 @@ function render() {
   }
   table += "</table></div>";
   document.getElementById("content").innerHTML = table;
+}
+
+function renderTurnIndicator() {
+  // Beide Symbole anzeigen, das aktive bekommt die Klasse "active"
+  const circleActive = currentShape === "circle" ? "active" : "";
+  const crossActive = currentShape === "cross" ? "active" : "";
+  document.getElementById("turn-indicator").innerHTML = `
+    <div class="turn-symbol circle ${circleActive}" title="Kreis ist am Zug">
+      <svg width="48" height="48" viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="25" fill="none" stroke="#00B0EF" stroke-width="8"/>
+      </svg>
+    </div>
+    <div class="turn-symbol cross ${crossActive}" title="Kreuz ist am Zug">
+      <svg width="48" height="48" viewBox="0 0 60 60">
+        <line x1="15" y1="15" x2="45" y2="45" stroke="#FFC000" stroke-width="8" stroke-linecap="round"/>
+        <line x1="45" y1="15" x2="15" y2="45" stroke="#FFC000" stroke-width="8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  `;
 }
 
 function handleClick(index, tdElement) {
@@ -44,6 +66,8 @@ function handleClick(index, tdElement) {
     // Wechsel das Symbol für den nächsten Zug
     currentShape = currentShape === "circle" ? "cross" : "circle";
   }
+  // Nach jedem Zug den Turn-Indicator neu rendern
+  renderTurnIndicator();
 }
 
 // Prüft, ob das Spiel vorbei ist und gibt ggf. die Gewinn-Kombination zurück
@@ -196,5 +220,6 @@ function getAnimatedCrossSVG() {
 function restartGame() {
   fields = [null, null, null, null, null, null, null, null, null];
   currentShape = "circle";
+  renderTurnIndicator();
   render();
 }
