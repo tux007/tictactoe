@@ -30,9 +30,13 @@ function render() {
 }
 
 function renderTurnIndicator() {
-  // Beide Symbole anzeigen, das aktive bekommt die Klasse "active"
-  const circleActive = currentShape === "circle" ? "active" : "";
-  const crossActive = currentShape === "cross" ? "active" : "";
+  // Prüfe, ob das Spiel vorbei ist
+  const winInfo = checkGameOver();
+  const isGameOver = !!winInfo || fields.every(f => f !== null);
+
+  // Beide Symbole anzeigen, das aktive bekommt die Klasse "active" nur wenn nicht Game Over
+  const circleActive = (!isGameOver && currentShape === "circle") ? "active" : "";
+  const crossActive = (!isGameOver && currentShape === "cross") ? "active" : "";
   document.getElementById("turn-indicator").innerHTML = `
     <div class="turn-symbol circle ${circleActive}" title="Kreis ist am Zug">
       <svg width="48" height="48" viewBox="0 0 60 60">
